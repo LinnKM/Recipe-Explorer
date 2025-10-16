@@ -1,5 +1,5 @@
 ## Project Name
-## Recipe Explorer
+Recipe Explorer
 
 ## Setup Instructions
 #### Project Setup
