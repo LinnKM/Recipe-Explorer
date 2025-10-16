@@ -1,16 +1,18 @@
-# recipe_explorer
+## Project Name
+Recipe Explorer
 
-A new Flutter project.
+## Setup Instructions
+#### Project Setup
 
-## Getting Started
+* Configure all the required packages first.
+* Folder structure is divided by Module Based for better orgazination.
+* Prepare constant variables, network services, and resuable components.
+* Use GetX for simple statemanagement.
+* Use Dio for network service (API handling).
 
-This project is a starting point for a Flutter application.
+## Architecture & Design
 
-A few resources to get you started if this is your first Flutter project:
+* Implmenet by following MVC (Model-View-Controller) architecture
+* Simple and Lightweight - best suited for this project that mainly fetches and display data.
+* Easy to maintain and extend for future modules.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
