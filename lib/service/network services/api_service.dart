@@ -5,7 +5,7 @@ import 'package:recipe_explorer/service/network%20services/api_end_points.dart';
 
 class ApiService {
   static final String baseUrl = 'https://api.spoonacular.com/recipes/';
-  static final String apiKey = '030c1132c96940d5b2b92898be4199cd';
+  static final String apiKey = '8a5e6c0e44d14f6f9bc8645a8c9f6d44';
 
   final dio = Dio(
     BaseOptions(
@@ -29,6 +29,27 @@ class ApiService {
     }
   }
 
+  Future<List<RecipeModel>?> getRecipesByTag({required String tag}) async {
+    try {
+      List<RecipeModel> recipesByTag = [];
+
+      final response = await dio.get(
+        '${ApiEndPoint.randomRecpies}?number=10&include-tags=$tag',
+      );
+      if (response.statusCode! <= 299 && response.statusCode! >= 200) {
+        final data = response.data['recipes'] as Iterable;
+
+        recipesByTag =
+            data.map((value) => RecipeModel.fromJson(value)).toList();
+      }
+
+      return recipesByTag;
+    } catch (e) {
+      // Get.snackbar('Error Message', e.toString());
+      return null;
+    }
+  }
+
   Future<List<RecipeModel>?> getRandomRecipes() async {
     try {
       List<RecipeModel> randomRecipes = [];
@@ -43,7 +64,7 @@ class ApiService {
 
       return randomRecipes;
     } catch (e) {
-      Get.snackbar('Error Message', e.toString());
+      // Get.snackbar('Error Message', e.toString());
       return null;
     }
   }
@@ -66,7 +87,7 @@ class ApiService {
 
       return searchRecipes;
     } catch (e) {
-      Get.snackbar('Error Message', e.toString());
+      // Get.snackbar('Error Message', e.toString());
       return null;
     }
   }
@@ -81,7 +102,7 @@ class ApiService {
         return null;
       }
     } catch (e) {
-      Get.snackbar('Error Message', e.toString());
+      // Get.snackbar('Error Message', e.toString());
       return null;
     }
   }

@@ -1,5 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:iconsax/iconsax.dart';
+import 'package:flutter_tabler_icons/flutter_tabler_icons.dart';
+import 'package:get/get.dart';
+import 'package:recipe_explorer/Colors/app_colors.dart';
+import 'package:recipe_explorer/controller/saved_recipe_controller.dart';
+import 'package:recipe_explorer/view/recipe_detail_view.dart';
+import 'package:recipe_explorer/widgets/cached_image.dart';
+import 'package:recipe_explorer/widgets/custom_sliver_appbar.dart';
 
 class SavedRecipePage extends StatefulWidget {
   const SavedRecipePage({super.key});
@@ -9,65 +15,161 @@ class SavedRecipePage extends StatefulWidget {
 }
 
 class _SavedRecipePageState extends State<SavedRecipePage> {
-  List<String> items = ['chicken', 'pork'];
+  late SavedRecipeController savedRecipeController;
+
+  @override
+  void initState() {
+    savedRecipeController = Get.find<SavedRecipeController>();
+
+    savedRecipeController.getSavedRecipes();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: BackButton(),
-        title: Text('Favorite Recipes'),
-        centerTitle: true,
-      ),
+      backgroundColor: Colors.white,
       body: SafeArea(
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 0),
-          child: Expanded(
-            child:
-                items.isEmpty
-                    ? Center(child: Text("No Favorite Recipes Yet"))
-                    : ListView.separated(
-                      padding: EdgeInsets.symmetric(horizontal: 10),
+        child: GetBuilder<SavedRecipeController>(
+          builder: (controller) {
+            return CustomScrollView(
+              slivers: [
+                CustomSliverAppbar(
+                  title: Text(
+                    'Saved Recipes',
+                    style: TextStyle(
+                      color: AppColors.primaryColor,
+                      fontSize: 25,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  centerTitle: true,
+                ),
+
+                SliverToBoxAdapter(child: SizedBox(height: 8)),
+
+                controller.isLoading
+                    ? SliverToBoxAdapter(
+                      child: Padding(
+                        padding: EdgeInsets.only(top: 10),
+                        child: Center(child: CircularProgressIndicator()),
+                      ),
+                    )
+                    : controller.savedRecipes.isEmpty
+                    ? SliverToBoxAdapter(
+                      child: Padding(
+                        padding: EdgeInsets.only(top: Get.height * 0.35),
+                        child: Center(child: Text('NO SAVED ITEMS YET')),
+                      ),
+                    )
+                    : SliverList.builder(
+                      addAutomaticKeepAlives: true,
+                      itemCount: controller.savedRecipes.length,
                       itemBuilder: (context, index) {
-                        return ListTile(
-                          onTap: () {},
-                          enableFeedback: true,
-                          style: ListTileStyle.drawer,
-                          leading: Container(
-                            width: 80,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              image: DecorationImage(
-                                fit: BoxFit.fill,
-                                image: NetworkImage(
-                                  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8JlWGheIlfIzO0ZIpLn2C5XHp5BQOQwRlww&s',
-                                ),
+                        final recipe = controller.savedRecipes[index];
+                        return InkWell(
+                          onTap: () {
+                            Get.to(
+                              () => DetailPage(
+                                recipe: recipe,
+                                id: recipe.id,
+                                xFromSearchPage: false,
                               ),
+                              transition: Transition.leftToRight,
+                              duration: Duration(milliseconds: 300),
+                            );
+                          },
+                          child: Padding(
+                            padding: EdgeInsets.only(
+                              left: 18,
+                              right: 18,
+                              top: 10,
+                            ),
+                            child: Column(
+                              children: [
+                                ListTile(
+                                  contentPadding: EdgeInsets.all(0),
+                                  // enableFeedback: true,
+                                  leading: SizedBox(
+                                    width: 80,
+                                    child: CachedImage(imageUrl: recipe.image),
+                                  ),
+                                  title: Text(
+                                    recipe.title * 3,
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
+                                    style: TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w400,
+                                    ),
+                                  ),
+                                  subtitle: Row(
+                                    spacing: 10,
+                                    children: [
+                                      Container(
+                                        padding: EdgeInsets.symmetric(
+                                          horizontal: 6,
+                                          vertical: 4,
+                                        ),
+                                        decoration: BoxDecoration(
+                                          color: AppColors.accentColor,
+                                          borderRadius: BorderRadius.circular(
+                                            18,
+                                          ),
+                                        ),
+                                        child: Row(
+                                          spacing: 3,
+                                          children: [
+                                            Icon(TablerIcons.clock, size: 16),
+                                            Text(
+                                              '${recipe.readyInMinutes}min',
+                                              style: TextStyle(fontSize: 12),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  trailing: PopupMenuButton<String>(
+                                    color: Colors.white,
+                                    iconSize: 18,
+                                    icon: const Icon(TablerIcons.dots_vertical),
+                                    onSelected:
+                                        (value) => {
+                                          savedRecipeController
+                                              .removeRecipeById(recipe.id),
+                                        },
+                                    itemBuilder:
+                                        (context) => [
+                                          const PopupMenuItem(
+                                            value: 'Delete',
+                                            child: Text(
+                                              'Remove',
+                                              style: TextStyle(
+                                                color: Colors.red,
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                  ),
+                                ),
+                                SizedBox(height: 5),
+                                Divider(
+                                  color: AppColors.textSecond,
+                                  thickness: 0.5,
+                                  height: 0,
+                                ),
+                              ],
                             ),
                           ),
-                          title: Text(
-                            'KFC Chicken',
-                            style: TextStyle(fontSize: 20),
-                          ),
-                          subtitle: Row(
-                            children: [
-                              Icon(Icons.timer_outlined, size: 20),
-                              Text('20 min'),
-                            ],
-                          ),
-                          trailing: Icon(Iconsax.save_2, size: 20),
                         );
                       },
-                      separatorBuilder: (context, index) {
-                        return Divider(
-                          color: Colors.grey,
-                          height: 10,
-                          thickness: 0.5,
-                        );
-                      },
-                      itemCount: 5,
                     ),
-          ),
+
+                SliverToBoxAdapter(child: SizedBox(height: 100)),
+              ],
+            );
+          },
         ),
       ),
     );

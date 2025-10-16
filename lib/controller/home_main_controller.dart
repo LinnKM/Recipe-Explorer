@@ -1,6 +1,5 @@
 import 'package:get/get.dart';
 import 'package:recipe_explorer/model/recipe_model.dart';
-import 'package:recipe_explorer/service/network%20services/api_end_points.dart';
 import 'package:recipe_explorer/service/network%20services/api_service.dart';
 
 enum RecipeCategory {
@@ -36,18 +35,6 @@ class HomeMainPageController extends GetxController {
 
     isLoading = false;
     update();
-  }
-
-  Future<void> getRecipesByTag(String tag) async {
-    Iterable? data;
-    data = await ApiService().get(
-      endPoint: '${ApiEndPoint.randomRecpies}?number=10&include-tags=$tag',
-    );
-
-    if (data != null) {
-      recipes = data.map((value) => RecipeModel.fromJson(value)).toList();
-      update();
-    } else {}
   }
 
   @override

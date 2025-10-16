@@ -42,6 +42,18 @@ class RecipeModel {
       likes: data['likes'] ?? 0,
     );
   }
+
+  Map<String, dynamic> toJson() => {
+    'id': id,
+    'image': image,
+    'title': title,
+    'readyInMinutes': readyInMinutes,
+    'servings': servings,
+    'extendedIngredients': extendedIngredients.map((e) => e.toJson()).toList(),
+    'summary': summary,
+    'instructions': instructions,
+    'likes': likes,
+  };
 }
 
 class IngredientsModel {
@@ -53,4 +65,6 @@ class IngredientsModel {
   factory IngredientsModel.fromJson(Map data) {
     return IngredientsModel(id: data['id'], name: data['name']);
   }
+
+  Map<String, dynamic> toJson() => {'id': id, 'name': name};
 }

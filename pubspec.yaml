@@ -43,7 +43,16 @@ dependencies:
   shimmer: ^3.0.0
   cached_network_image: ^3.4.1
   flutter_tabler_icons: ^1.43.0
+  shared_preferences: ^2.5.3
+  readmore: ^3.0.0
+  html: ^0.15.6
+  flutter_launcher_icons: ^0.14.4
   
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "asset/image/chicken.jpg"
+  min_sdk_android: 21 
 
 dev_dependencies:
   flutter_test:

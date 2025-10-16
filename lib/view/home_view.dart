@@ -42,7 +42,7 @@ class _HomePageState extends State<HomePage> {
                 },
                 controller: pageController,
                 children: [
-                  KeepAlivePage(child: HomeMainPage()),
+                  HomeMainPage(),
                   KeepAlivePage(child: SavedRecipePage()),
                 ],
               ),

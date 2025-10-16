@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:recipe_explorer/view/home_view.dart';
+import 'package:recipe_explorer/controller/saved_recipe_controller.dart';
+import 'package:recipe_explorer/view/splash_screen.dart';
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(
@@ -12,8 +13,8 @@ void main() {
       systemNavigationBarIconBrightness: Brightness.light,
     ),
   );
-
-  // Get.put(HomePageController());
+  WidgetsFlutterBinding.ensureInitialized();
+  Get.put(SavedRecipeController());
 
   runApp(const MyApp());
 }
@@ -31,7 +32,7 @@ class MyApp extends StatelessWidget {
         fontFamily: 'Poppins',
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: HomePage(),
+      home: SplashScreen(),
     );
   }
 }
