@@ -17,38 +17,21 @@ class _TestPageState extends State<TestPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(12),
-            color: Colors.grey.withAlpha(50),
-          ),
-          margin: EdgeInsets.symmetric(horizontal: Get.width * 0.235),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            spacing: 10,
-            children: List.generate(
-              strLst.length,
-              (index) => GestureDetector(
-                onTap: () {
-                  selectedTab = index;
-                  setState(() {});
-                },
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(12),
-                    color:
-                        (selectedTab == index)
-                            ? Colors.blue
-                            : Colors.transparent,
-                  ),
-                  padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                  child: Text(strLst[index]),
-                ),
+      backgroundColor: Colors.blueAccent,
+      body: RefreshIndicator(
+        child: Expanded(
+          child: ListView(
+            children: [
+              Container(
+                height: Get.height,
+                child: Center(child: Text('hello')),
               ),
-            ),
+            ],
           ),
         ),
+        onRefresh: () async {
+          await Future.delayed(Durations.medium4);
+        },
       ),
     );
   }

@@ -5,7 +5,7 @@ import 'package:recipe_explorer/service/network%20services/api_end_points.dart';
 
 class ApiService {
   static final String baseUrl = 'https://api.spoonacular.com/recipes/';
-  static final String apiKey = '8a5e6c0e44d14f6f9bc8645a8c9f6d44';
+  static final String apiKey = 'c0a3d713f6ff4462ba9f19a46544c47b';
 
   final dio = Dio(
     BaseOptions(

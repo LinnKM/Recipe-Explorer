@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:recipe_explorer/controller/saved_recipe_controller.dart';
+import 'package:recipe_explorer/test/test_page.dart';
 import 'package:recipe_explorer/view/splash_screen.dart';
 
 void main() {

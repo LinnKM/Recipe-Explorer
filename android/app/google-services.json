@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "448699262663",
+    "project_id": "my-explore-recipe",
+    "storage_bucket": "my-explore-recipe.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:448699262663:android:eb47a6e169ff7bf8d300e2",
+        "android_client_info": {
+          "package_name": "com.example.recipe_explorer"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCOHdFh2KRSVHz3hcYHp13qEX7J3T4ISSw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
