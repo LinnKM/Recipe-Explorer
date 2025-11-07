@@ -23,9 +23,4 @@ class RecipeDetialController extends GetxController {
   void updateRecipe(RecipeModel recipe) {
     this.recipe = recipe;
   }
-
-  @override
-  void onInit() {
-    super.onInit();
-  }
 }

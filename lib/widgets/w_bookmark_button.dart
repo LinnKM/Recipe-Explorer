@@ -18,7 +18,7 @@ class BookmarkButton extends StatelessWidget {
         return IconButton(
           icon: Icon(
             isSaved ? TablerIcons.bookmark_filled : TablerIcons.bookmark_plus,
-            color: isSaved ? AppColors.primaryColor : Colors.grey,
+            color: isSaved ? AppColors.accentColor : AppColors.accentColor,
           ),
           onPressed: () => controller.toggleSave(recipe),
         );

@@ -39,7 +39,7 @@ class HomeMainPageController extends GetxController {
 
   @override
   void onInit() {
-    // getRandomRecipes(10);
+    getRandomRecipes(10);
     super.onInit();
   }
 }

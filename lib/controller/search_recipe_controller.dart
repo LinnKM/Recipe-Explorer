@@ -65,6 +65,7 @@ class SearchRecipeController extends GetxController {
     if (debounce != null) {
       debounce!.cancel();
     }
+    clearTextController();
     super.onClose();
   }
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:recipe_explorer/app_extension.dart';
 import 'package:shimmer/shimmer.dart';
 
 class HomePageBannerShimmer extends StatelessWidget {
@@ -14,7 +15,7 @@ class HomePageBannerShimmer extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
-          color: Colors.white.withOpacity(0.4),
+          color: Colors.white.withAlpha(0.4.toAlpha()),
         ),
         height: 200,
         width: double.infinity,
@@ -26,7 +27,7 @@ class HomePageBannerShimmer extends StatelessWidget {
               margin: EdgeInsets.only(left: 20, bottom: 8),
               decoration: BoxDecoration(
                 // borderRadius: BorderRadius.circular(10),
-                color: Colors.black.withOpacity(0.5),
+                color: Colors.black.withAlpha(0.5.toAlpha()),
               ),
               width: Get.width * 0.5,
               height: 15,
@@ -36,7 +37,7 @@ class HomePageBannerShimmer extends StatelessWidget {
               margin: EdgeInsets.only(left: 20, bottom: 30),
               decoration: BoxDecoration(
                 // borderRadius: BorderRadius.circular(10),
-                color: Colors.black.withOpacity(0.5),
+                color: Colors.black.withAlpha(0.5.toAlpha()),
               ),
               width: Get.width * 0.3,
               height: 15,

@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:recipe_explorer/Colors/app_colors.dart';
+import 'package:recipe_explorer/app_extension.dart';
 import 'package:recipe_explorer/view/home_view.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -85,7 +86,7 @@ class _SplashScreenState extends State<SplashScreen>
                       fit: BoxFit.cover,
                     ),
                   ),
-                  const SizedBox(height: 20),
+                  20.heightBox(),
                   Text(
                     "Recipe Explorer",
                     style: theme.textTheme.headlineSmall?.copyWith(
@@ -94,7 +95,7 @@ class _SplashScreenState extends State<SplashScreen>
                       letterSpacing: 1.2,
                     ),
                   ),
-                  const SizedBox(height: 10),
+                  10.heightBox(),
                   Text(
                     "Discover. Cook. Enjoy.",
                     style: theme.textTheme.bodyMedium?.copyWith(
@@ -102,7 +103,7 @@ class _SplashScreenState extends State<SplashScreen>
                       letterSpacing: 1.0,
                     ),
                   ),
-                  const SizedBox(height: 40),
+                  40.heightBox(),
                   SizedBox(
                     width: 40,
                     height: 40,

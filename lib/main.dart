@@ -1,19 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:recipe_explorer/controller/saved_recipe_controller.dart';
-import 'package:recipe_explorer/test/test_page.dart';
 import 'package:recipe_explorer/view/splash_screen.dart';
 
 void main() {
-  SystemChrome.setSystemUIOverlayStyle(
-    const SystemUiOverlayStyle(
-      statusBarColor: Colors.transparent,
-      statusBarIconBrightness: Brightness.dark,
-      systemNavigationBarColor: Colors.transparent,
-      systemNavigationBarIconBrightness: Brightness.light,
-    ),
-  );
   WidgetsFlutterBinding.ensureInitialized();
   Get.put(SavedRecipeController());
 
@@ -30,9 +20,12 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
+        scaffoldBackgroundColor: Colors.white,
         fontFamily: 'Poppins',
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
+      defaultTransition: Transition.leftToRight,
+      transitionDuration: Duration(milliseconds: 250),
       home: SplashScreen(),
     );
   }
